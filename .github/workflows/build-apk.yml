@@ -17,7 +17,10 @@ jobs:
           java-version: 21
       - run: npm install
       - run: npx cap add android
-      - run: npx capacitor-assets generate --android --iconBackgroundColor '#15110d' --iconBackgroundColorDark '#15110d'
+      - name: Thay icon
+        run: |
+          rm -rf android/app/src/main/res/mipmap-anydpi-v26
+          cp -r res-overlay/* android/app/src/main/res/
       - run: npx cap sync android
       - run: |
           cd android
